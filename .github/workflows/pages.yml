@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages (Profile Repo)
+name: Deploy to GitHub Pages (docs folder)
 
 on:
   push:
@@ -25,10 +25,12 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          publish_branch: main
-          keep_files: true
+      - name: Move build to docs folder
+        run: |
+          rm -rf docs
+          mv dist docs
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add docs
+          git commit -m "Deploy site to docs" || echo "No changes to commit"
+          git push
