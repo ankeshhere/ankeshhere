@@ -1,8 +1,8 @@
 {
-  "name": "ankesh-portfolio",
+  "name": "ankeshhere",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://<your-github-username>.github.io/ankesh-portfolio",
+  "homepage": "https://ankeshhere.github.io/ankeshhere",
   "scripts": {
     "start": "vite",
     "build": "vite build",
