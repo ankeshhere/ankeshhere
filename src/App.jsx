@@ -1,70 +1,50 @@
 import React from 'react'
+import Header from './components/Header'
+import About from './components/About'
+import Experience from './components/Experience'
+import Projects from './components/Projects'
+import Footer from './components/Footer'
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white text-gray-900 font-sans">
-      <div className="max-w-5xl mx-auto p-6">
-        <header className="mb-6">
-          <h1 className="text-3xl font-bold">Ankesh Prasad</h1>
-          <p className="text-sm text-gray-600">Full Stack Engineer — Jamshedpur, India</p>
-          <p className="text-sm text-gray-600 mt-1">+91-8682875690 • ankeshhere@gmail.com</p>
-        </header>
+    <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 font-inter">
+      <div className="max-w-5xl mx-auto px-6 py-10">
+        <Header />
+        <main className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2 space-y-8">
+            <About />
+            <Experience />
+            <Projects />
+          </div>
+          <aside className="lg:col-span-1">
+            <div className="sticky top-6 space-y-6">
+              <div className="p-6 rounded-xl border bg-white shadow">
+                <h4 className="text-sm font-semibold text-slate-600">Contact</h4>
+                <p className="mt-2 text-sm">ankeshhere@gmail.com</p>
+                <p className="text-sm">+91-8682875690</p>
+                <a className="inline-block mt-4 px-4 py-2 text-sm border rounded hover:bg-slate-50" href="/Ankesh_CV_Aug_2025.pdf" download>Download Resume</a>
+              </div>
 
-        <main className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <section className="space-y-4">
-            <h2 className="text-xl font-semibold border-b pb-2">Experience</h2>
+              <div className="p-6 rounded-xl border bg-white shadow">
+                <h4 className="text-sm font-semibold text-slate-600">Skills</h4>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {['Python','Java','SQL','React','Lit','Quarkus','Tailwind','Docker'].map(s => (
+                    <span key={s} className="text-xs px-2 py-1 bg-slate-100 rounded">{s}</span>
+                  ))}
+                </div>
+              </div>
 
-            <article>
-              <h3 className="font-semibold">Full Stack Engineer — Standard Chartered</h3>
-              <p className="text-sm text-gray-600">Nov 2024 – Present</p>
-              <ul className="list-disc list-inside mt-2 text-sm space-y-1">
-                <li><strong>BCBS App Migration</strong> — Led a 3-member team migrating an app from PEGA to Lit & Quarkus, implementing full functionality.</li>
-                <li><strong>GET Dashboard</strong> — Built dashboard for GBS sourcing team (Lit frontend, Quarkus backend).</li>
-              </ul>
-            </article>
-
-            <article>
-              <h3 className="font-semibold">Technical Specialist — Standard Chartered</h3>
-              <p className="text-sm text-gray-600">Apr 2023 – Oct 2024</p>
-              <ul className="list-disc list-inside mt-2 text-sm space-y-1">
-                <li>Python tool for Oracle DB reporting with automated Excel & email dispatch.</li>
-                <li>Windows executable for Excel automation.</li>
-                <li>Real-time dashboards with Elasticsearch.</li>
-                <li>SSL expiry automation (Selenium) & log rotation alerts.</li>
-                <li>Password rotation with HashiCorp Vault & AES-256 encryption.</li>
-                <li>Email sentiment classification with FinBERT.</li>
-              </ul>
-            </article>
-          </section>
-
-          <aside className="space-y-4">
-            <div>
-              <h2 className="text-xl font-semibold border-b pb-2">Education</h2>
-              <p className="mt-2 text-sm"><strong>VIT</strong> — B.Tech ECE, 7.96 CGPA (2015–2019)</p>
-              <p className="text-sm">D.B.M.S English School — ISC 93.2% (2014)</p>
-              <p className="text-sm">D.B.M.S English School — ICSE 89% (2012)</p>
-            </div>
-
-            <div>
-              <h2 className="text-xl font-semibold border-b pb-2">Skills</h2>
-              <p className="text-sm"><strong>Languages:</strong> Python, Java, SQL, JavaScript, HTML/CSS</p>
-              <p className="text-sm"><strong>Frameworks:</strong> Lit, React, Quarkus, SpringBoot, Tailwind</p>
-              <p className="text-sm"><strong>Tools:</strong> Git, Docker, VS Code, IntelliJ, Postman</p>
-            </div>
-
-            <div>
-              <h2 className="text-xl font-semibold border-b pb-2">Awards</h2>
-              <ul className="list-disc list-inside text-sm space-y-1">
-                <li>Merit Scholarship — HSC</li>
-                <li>GEMS Spot Award (2020)</li>
-                <li>Outstanding Performer (2021, 2022)</li>
-                <li>MB-910 Microsoft Dynamics 365 Certified</li>
-              </ul>
+              <div className="p-6 rounded-xl border bg-white shadow">
+                <h4 className="text-sm font-semibold text-slate-600">Awards</h4>
+                <ul className="mt-2 text-sm list-disc list-inside space-y-1">
+                  <li>GEMS Spot Award (2020)</li>
+                  <li>Outstanding Performer (2021, 2022)</li>
+                </ul>
+              </div>
             </div>
           </aside>
         </main>
-
-        <footer className="mt-8 text-center text-xs text-gray-500"></footer>
+        <Footer />
       </div>
     </div>
   )
