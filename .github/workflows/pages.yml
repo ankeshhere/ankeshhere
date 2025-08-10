@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages (docs folder)
+name: Build and Deploy Vite site to /docs
 
 on:
   push:
@@ -22,10 +22,16 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Ensure correct base in vite.config.mjs
+        run: |
+          if ! grep -q "base: './'" vite.config.mjs; then
+            sed -i "s|base: .*|base: './',|" vite.config.mjs || echo "Make sure base is './'"
+          fi
+
       - name: Build project
         run: npm run build
 
-      - name: Move build to docs folder
+      - name: Deploy to docs folder
         run: |
           rm -rf docs
           mv dist docs
