@@ -7,7 +7,7 @@ export default function Header(){
       <div className="flex items-center gap-6">
         <div className="relative">
           <img 
-            src="/1654432670902.jpeg" 
+            src={import.meta.env.BASE_URL + '1654432670902.jpeg'} 
             alt="Ankesh Prasad" 
             className="w-20 h-20 rounded-full border-4 border-sky-400 shadow-lg object-cover bg-slate-200 ring-2 ring-sky-500 ring-offset-2 ring-offset-[#181f2a] transition-transform duration-300 hover:scale-105" 
             style={{boxShadow:'0 4px 24px 0 rgba(0,0,0,0.25)'}}
