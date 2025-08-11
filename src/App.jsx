@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from './components/Header'
 import About from './components/About'
 import Experience from './components/Experience'
@@ -7,26 +7,150 @@ import Footer from './components/Footer'
 import { motion } from 'framer-motion'
 
 export default function App() {
+  const [gateOpen, setGateOpen] = useState(false);
+  const [showGate, setShowGate] = useState(true);
+
   return (
     <div className="min-h-screen font-inter relative overflow-hidden bg-gradient-to-br from-[#0f2027] via-[#2c5364] to-[#232526] animate-bg-move">
-      {/* Animated background pattern */}
+      {/* GATE LANDING OVERLAY */}
+      {showGate && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-gradient-to-b from-[#0f2027] via-[#232526] to-black overflow-hidden">
+          {/* Space background with stars and nebula */}
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <svg className="w-full h-full" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="nebula" cx="50%" cy="50%" r="80%" fx="60%" fy="40%">
+                  <stop offset="0%" stopColor="#7f7fd5" stopOpacity="0.7" />
+                  <stop offset="40%" stopColor="#86a8e7" stopOpacity="0.5" />
+                  <stop offset="100%" stopColor="#232526" stopOpacity="0.1" />
+                </radialGradient>
+              </defs>
+              <rect width="1440" height="900" fill="url(#nebula)" />
+              {/* Stars */}
+              {[...Array(120)].map((_,i) => (
+                <circle key={i} cx={Math.random()*1440} cy={Math.random()*900} r={Math.random()*1.2+0.3} fill="#fff" opacity={Math.random()*0.7+0.3} />
+              ))}
+            </svg>
+          </div>
+          {/* Gate doors - now with sci-fi elements */}
+          <div className="absolute inset-0 flex z-10">
+            {/* Left Door with spaceship and alien */}
+            <motion.div
+              initial={false}
+              animate={gateOpen ? { translateX: '-100%' } : { translateX: 0 }}
+              transition={{ duration: 1.2, ease: [0.77, 0, 0.175, 1] }}
+              className="w-1/2 h-full bg-gradient-to-br from-[#232526] via-[#2c5364] to-[#0f2027] border-r-4 border-sky-700 shadow-2xl flex items-center justify-end relative overflow-hidden"
+              style={{ zIndex: 51 }}
+              onAnimationComplete={() => {
+                if (gateOpen) setTimeout(() => setShowGate(false), 200);
+              }}
+            >
+              {/* Spaceship SVG - Bigger */}
+              <svg width="170" height="170" className="absolute left-2 top-8 animate-bounce-slow" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="85" cy="140" rx="55" ry="16" fill="#222" opacity="0.3"/>
+                <ellipse cx="85" cy="85" rx="60" ry="24" fill="#b2f5ea" stroke="#7f7fd5" strokeWidth="3"/>
+                <ellipse cx="85" cy="85" rx="36" ry="14" fill="#fff" opacity="0.7"/>
+                <rect x="65" y="56" width="40" height="36" rx="16" fill="#7f7fd5" stroke="#86a8e7" strokeWidth="3"/>
+                <rect x="78" y="98" width="14" height="20" rx="7" fill="#7f7fd5" stroke="#86a8e7" strokeWidth="2"/>
+              </svg>
+              {/* Green Alien SVG - Bigger */}
+              <svg width="120" height="120" className="absolute left-4 bottom-10 animate-alien-wave" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="60" cy="70" rx="36" ry="44" fill="#39FF14" opacity="0.8"/>
+                <ellipse cx="44" cy="76" rx="6" ry="12" fill="#222"/>
+                <ellipse cx="76" cy="76" rx="6" ry="12" fill="#222"/>
+                <ellipse cx="60" cy="100" rx="14" ry="6" fill="#222" opacity="0.3"/>
+                <ellipse cx="60" cy="50" rx="14" ry="10" fill="#fff" opacity="0.2"/>
+              </svg>
+              <div className="w-2 h-1/2 bg-sky-400 rounded-r-full blur-lg opacity-40 absolute right-0 top-1/4 animate-pulse" />
+            </motion.div>
+            {/* Right Door with coder silhouette */}
+            <motion.div
+              initial={false}
+              animate={gateOpen ? { translateX: '100%' } : { translateX: 0 }}
+              transition={{ duration: 1.2, ease: [0.77, 0, 0.175, 1] }}
+              className="w-1/2 h-full bg-gradient-to-bl from-[#0f2027] via-[#2c5364] to-[#232526] border-l-4 border-sky-700 shadow-2xl flex items-center justify-start relative overflow-hidden"
+              style={{ zIndex: 51 }}
+            >
+              {/* Coder silhouette SVG */}
+              <svg width="80" height="100" className="absolute right-8 bottom-16 animate-coder-float" viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="40" cy="90" rx="22" ry="7" fill="#222" opacity="0.3"/>
+                <circle cx="40" cy="38" r="14" fill="#7f7fd5"/>
+                <rect x="24" y="52" width="32" height="24" rx="10" fill="#232536" stroke="#7f7fd5" strokeWidth="2"/>
+                <rect x="32" y="60" width="16" height="8" rx="3" fill="#fff" opacity="0.2"/>
+                <rect x="36" y="68" width="8" height="6" rx="2" fill="#fff" opacity="0.1"/>
+              </svg>
+              <div className="w-2 h-1/2 bg-sky-400 rounded-l-full blur-lg opacity-40 absolute left-0 top-1/4 animate-pulse" />
+            </motion.div>
+          </div>
+      {/* Custom keyframes for sci-fi gate animations */}
+      <style>{`
+        @keyframes bounce-slow {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-18px); }
+        }
+        .animate-bounce-slow {
+          animation: bounce-slow 3.5s infinite cubic-bezier(0.4,0,0.2,1);
+        }
+        @keyframes alien-wave {
+          0%, 100% { transform: rotate(-8deg) scale(1); }
+          50% { transform: rotate(8deg) scale(1.08); }
+        }
+        .animate-alien-wave {
+          animation: alien-wave 2.8s infinite cubic-bezier(0.4,0,0.2,1);
+        }
+        @keyframes coder-float {
+          0%, 100% { transform: translateY(0) scale(1); }
+          50% { transform: translateY(-10px) scale(1.04); }
+        }
+        .animate-coder-float {
+          animation: coder-float 3.2s infinite cubic-bezier(0.4,0,0.2,1);
+        }
+      `}</style>
+          {/* Center content - with fallback avatar if image fails */}
+          <motion.div 
+            initial={{ opacity: 1, scale: 1 }} 
+            animate={gateOpen ? { opacity: 0, scale: 0.95 } : { opacity: 1, scale: 1 }} 
+            transition={{ duration: 0.7 }}
+            className="relative z-20 flex flex-col items-center"
+          >
+            <div className="w-32 h-32 mb-6 rounded-full border-4 border-sky-400 shadow-lg bg-slate-900 flex items-center justify-center overflow-hidden">
+              <img 
+                src="/1654432670902.jpeg" 
+                alt="Ankesh Prasad" 
+                className="w-full h-full object-cover" 
+                onError={e => { e.target.style.display='none'; e.target.parentNode.innerHTML='<svg width=100 height=100 viewBox=\'0 0 100 100\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'><circle cx=50 cy=50 r=48 fill=\'#232536\' stroke=\'#7f7fd5\' stroke-width=4/><path d=\'M50 30a15 15 0 1 1 0 30a15 15 0 0 1 0-30z\' fill=\'#7f7fd5\'/><ellipse cx=50 cy=70 rx=18 ry=10 fill=\'#7f7fd5\' opacity=\'0.3\'/></svg>'; }}
+              />
+            </div>
+            <h1 className="text-4xl font-extrabold text-white mb-2 drop-shadow-lg tracking-widest">Ankesh Prasad</h1>
+            <p className="text-lg text-sky-200 mb-6 font-mono">Full Stack Engineer <span className="text-sky-400">• Lit | Quarkus | React</span></p>
+            <button
+              onClick={() => setGateOpen(true)}
+              className="px-10 py-3 rounded-full bg-gradient-to-r from-sky-600 via-indigo-500 to-purple-700 hover:from-sky-500 hover:to-indigo-600 text-white text-xl font-bold shadow-xl transition-all duration-200 border-2 border-sky-400 focus:outline-none focus:ring-4 focus:ring-sky-300 tracking-widest"
+            >
+              Enter Universe
+            </button>
+          </motion.div>
+        </div>
+      )}
+
+      {/* Animated space background pattern for main site */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <svg className="w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" fill="none" viewBox="0 0 1440 900">
+        <svg className="w-full h-full opacity-30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" fill="none" viewBox="0 0 1440 900">
           <defs>
-            <linearGradient id="bg-grad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#0f2027" />
-              <stop offset="100%" stopColor="#2c5364" />
-            </linearGradient>
+            <radialGradient id="main-nebula" cx="50%" cy="50%" r="80%" fx="60%" fy="40%">
+              <stop offset="0%" stopColor="#7f7fd5" stopOpacity="0.7" />
+              <stop offset="40%" stopColor="#86a8e7" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="#232526" stopOpacity="0.1" />
+            </radialGradient>
           </defs>
-          <circle cx="400" cy="200" r="200" fill="url(#bg-grad)" opacity="0.3">
-            <animate attributeName="cx" values="400;1200;400" dur="18s" repeatCount="indefinite" />
-          </circle>
-          <circle cx="1200" cy="700" r="180" fill="#232526" opacity="0.25">
-            <animate attributeName="cy" values="700;200;700" dur="22s" repeatCount="indefinite" />
-          </circle>
+          <rect width="1440" height="900" fill="url(#main-nebula)" />
+          {/* Stars */}
+          {[...Array(100)].map((_,i) => (
+            <circle key={i} cx={Math.random()*1440} cy={Math.random()*900} r={Math.random()*1.2+0.3} fill="#fff" opacity={Math.random()*0.7+0.3} />
+          ))}
         </svg>
       </div>
-      <div className="relative z-10 max-w-5xl mx-auto px-6 py-10">
+      <div className={`relative z-10 max-w-5xl mx-auto px-6 py-10 transition-opacity duration-700 ${gateOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
         <Header />
         <main className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-8">
