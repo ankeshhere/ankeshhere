@@ -115,7 +115,7 @@ export default function App() {
           >
             <div className="w-32 h-32 mb-6 rounded-full border-4 border-sky-400 shadow-lg bg-slate-900 flex items-center justify-center overflow-hidden">
               <img 
-                src="/1654432670902.jpeg" 
+                src={import.meta.env.BASE_URL + '1654432670902.jpeg'} 
                 alt="Ankesh Prasad" 
                 className="w-full h-full object-cover" 
                 onError={e => { e.target.style.display='none'; e.target.parentNode.innerHTML='<svg width=100 height=100 viewBox=\'0 0 100 100\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'><circle cx=50 cy=50 r=48 fill=\'#232536\' stroke=\'#7f7fd5\' stroke-width=4/><path d=\'M50 30a15 15 0 1 1 0 30a15 15 0 0 1 0-30z\' fill=\'#7f7fd5\'/><ellipse cx=50 cy=70 rx=18 ry=10 fill=\'#7f7fd5\' opacity=\'0.3\'/></svg>'; }}
