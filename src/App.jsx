@@ -121,14 +121,20 @@ export default function App() {
                 onError={e => { e.target.style.display='none'; e.target.parentNode.innerHTML='<svg width=100 height=100 viewBox=\'0 0 100 100\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'><circle cx=50 cy=50 r=48 fill=\'#232536\' stroke=\'#7f7fd5\' stroke-width=4/><path d=\'M50 30a15 15 0 1 1 0 30a15 15 0 0 1 0-30z\' fill=\'#7f7fd5\'/><ellipse cx=50 cy=70 rx=18 ry=10 fill=\'#7f7fd5\' opacity=\'0.3\'/></svg>'; }}
               />
             </div>
-            <h1 className="text-4xl font-extrabold text-white mb-2 drop-shadow-lg tracking-widest">Ankesh Prasad</h1>
-            <p className="text-lg text-sky-200 mb-6 font-mono">Full Stack Engineer <span className="text-sky-400">• Lit | Quarkus | React</span></p>
-            <button
-              onClick={() => setGateOpen(true)}
-              className="px-10 py-3 rounded-full bg-gradient-to-r from-sky-600 via-indigo-500 to-purple-700 hover:from-sky-500 hover:to-indigo-600 text-white text-xl font-bold shadow-xl transition-all duration-200 border-2 border-sky-400 focus:outline-none focus:ring-4 focus:ring-sky-300 tracking-widest"
-            >
-              Enter Universe
-            </button>
+           <h1 className="text-4xl font-extrabold text-white mb-4 drop-shadow-lg tracking-widest">Ankesh Prasad</h1>
+          <div className="max-w-xl text-center mb-8">
+            <p className="text-base md:text-lg text-sky-100 leading-relaxed">
+              I’m a full stack engineer with 6+ years of experience in the BFSI domain, delivering end-to-end technology solutions that solve complex business problems.<br/><br/>
+              My work goes beyond writing code — I collaborate directly with product owners to gather requirements, design scalable database architectures, develop robust APIs, and build intuitive UIs that enhance user experience.<br/><br/>
+              Over the years, I’ve helped the bank streamline operations, improve customer onboarding speed, and enhance compliance workflows — always balancing business needs with technical excellence.
+            </p>
+          </div>
+          <button
+            onClick={() => setGateOpen(true)}
+            className="px-10 py-3 rounded-full bg-gradient-to-r from-sky-600 via-indigo-500 to-purple-700 hover:from-sky-500 hover:to-indigo-600 text-white text-xl font-bold shadow-xl transition-all duration-200 border-2 border-sky-400 focus:outline-none focus:ring-4 focus:ring-sky-300 tracking-widest"
+          >
+            Enter Universe
+          </button>
           </motion.div>
         </div>
       )}
